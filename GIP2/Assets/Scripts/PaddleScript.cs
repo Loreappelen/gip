@@ -7,6 +7,7 @@ public class PaddleScript : MonoBehaviour
     public float speed;
     public float rightScreenEdge;
     public float leftScreenEdge;
+    public UIScript ui;
 
     void Start()
     {
@@ -16,6 +17,11 @@ public class PaddleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ui.gameOver)
+        {
+            return;
+        }
+
         float horizontal = Input.GetAxis("Horizontal");
 
         transform.Translate(Vector2.right * horizontal * Time.deltaTime * speed);

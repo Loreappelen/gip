@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
@@ -12,6 +14,9 @@ public class UIScript : MonoBehaviour
     public int score;
     public int lives;
     public int bricks;
+
+    public bool gameOver;
+    public GameObject gameOverPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,13 @@ public class UIScript : MonoBehaviour
     public void UpdateLives()
     {
         lives--;
+
+        if(lives == 0)
+        {
+            lives = 0;
+            GameOver();
+        }    
+
         livesText.text = "LIVES: " + lives;
     }
     
@@ -45,5 +57,14 @@ public class UIScript : MonoBehaviour
         bricksText.text = "BRICKS: " + bricks;
     }
 
+    void GameOver()
+    {
+        gameOver = true;
+        gameOverPanel.SetActive(true);
+    }    
 
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
 }

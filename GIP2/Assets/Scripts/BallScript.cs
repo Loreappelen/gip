@@ -19,6 +19,11 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ui.gameOver)
+        {
+            return;
+        }
+
         if(inPlay == false)
         {
             transform.position = paddle.position;
